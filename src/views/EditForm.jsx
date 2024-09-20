@@ -17,7 +17,7 @@ import React, {useState, useContext } from'react';
         <label for="txt-hp">핸드폰(hp): </label><input type='text'id="txt-hp" name="hp"  value="" placeholder="핸드폰"/>
     </div>
     <div>
-        <label for="txt-company">회서(company): </label><input type='text'id="txt-company" name="company"  value="" placeholder="회사"/>
+        <label for="txt-company">회사(company): </label><input type='text'id="txt-company" name="company"  value="" placeholder="회사"/>
     </div>    
   </form>
         <input type="hidden" name="action" value="update"/>
