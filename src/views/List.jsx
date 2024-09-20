@@ -27,6 +27,7 @@ const List = () => {
         console.log("마운트 됐어요");
         getPersonList();
     }, []); // 빈 배열을 넣으면 마운트 시 한 번만 실행
+   
     //삭제버튼 클릭했을 때
     const handleDel=(no)=>{
         console.log("삭제버튼 클릭");
@@ -38,9 +39,11 @@ const List = () => {
         }).then(response => {
             console.log(response); //수신데이타
             console.log(response.data);
-        
+            setPersonList(prevList => prevList.filter(personVo => personVo.personId !== no));
+            //filter에 대해 공부해보기
         }).catch(error => {
             console.log(error);
+            alert("다시 시도해주세요")
         });
     }
     return (
@@ -68,7 +71,7 @@ const List = () => {
                             </tr>
                             <tr>
                                 <td>
-                                    <Link to='' target="_blank" rel="noreferrer noopener">수정</Link>
+                                    <Link to='/editform' target="_blank" rel="noreferrer noopener">수정</Link>
                                 </td>
                                 <td><button type='button' onClick={()=>{handleDel(personVo.personId)}}>삭제</button></td>
                             </tr>

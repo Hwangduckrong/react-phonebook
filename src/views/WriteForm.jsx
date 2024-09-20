@@ -85,7 +85,7 @@ const WriteForm = () => {
             <h2>전화번호-등록폼</h2>
             <p>아래의 항목을 입력한 후 등록 버튼을 클릭해주세요.</p>
 
-            <form action="/ex01" method="get" onSubmit={handleSubmit}>
+            <form action="/list" method="get" onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="txt-name">이름(name): </label>
                     <input type='text' id='txt-name' name="name" value={name} placeholder="이름" onChange={handleName} />
@@ -101,7 +101,7 @@ const WriteForm = () => {
             </form>
             <input type="hidden" name="action" value="insert" />
             <button type='submit' onClick={handleSubmit}>등록(전송)</button><br />
-            <Link to='' target="_blank" rel="noreferrer noopener">리스트로 이동</Link>
+            <Link to='/list' target="_blank" rel="noreferrer noopener">리스트로 이동</Link>
         </>
     );
 }
