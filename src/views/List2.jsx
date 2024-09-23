@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-const List = () => {
+const List2 = () => {
 
     // 상태 관리 변수(값이 변하면 화면에 랜더링)
     const [personList, setPersonList] = useState([]);
@@ -35,7 +35,7 @@ const List = () => {
         console.log("삭제버튼 클릭");
         axios({
             method: 'delete', 			// put, post, delete                   
-            url: 'http://localhost:9000/api/persons/'+no,
+            url: `http://localhost:9000/api/persons/${no}`,//백틱, 내가 쓰고싶은거 다쓰고 ${}써버려라
         
             responseType: 'json' //수신타입
         }).then(response => {
@@ -43,12 +43,18 @@ const List = () => {
             console.log(response.data);
             console.log(response.data.result);
                 if(response.data.result==='success'){
-                    getPersonList();
+                
+                    /*setPersonList((prevList)=>{
+                        prevList.filter((personVo));
+                        return personVo.personId!==no;
+                    }) 이게 원래 filter 용법 사용*/
+                setPersonList(prevList => prevList.filter(personVo => personVo.personId !== no))// 간략한 filter용법 적용
+                    
+             
                 }else
                 alert(response.data.message);
-            //리다이렉트(같은 페이지의 리다이렉트는 안된다.)
-            //getPersonList();
-            //setPersonList(prevList => prevList.filter(personVo => personVo.personId !== no))//콜백함수+filter;
+           
+            
             //filter에 대해 공부해보기
         }).catch(error => {
             console.log(error);
@@ -80,7 +86,7 @@ const List = () => {
                             </tr>
                             <tr>
                                 <td>
-                                    <Link to={'/editform/'+personVo.personId} target="_blank" rel="noreferrer noopener">수정</Link>
+                                    <Link to={`/editform/${personVo.personId}`} target="_blank" rel="noreferrer noopener">수정</Link>
                                 </td>
                                 <td><button type='button' onClick={()=>{handleDel(personVo.personId)}}>삭제</button></td>
                             </tr>
@@ -95,4 +101,4 @@ const List = () => {
     );
 }
 
-export default List;
+export default List2;

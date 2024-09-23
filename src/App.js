@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import List from './views/List';
 import WriteForm from './views/WriteForm';
 import EditForm from './views/EditForm';
+import List2 from './views/List2';
   
 function App(){
 return (
@@ -10,7 +11,8 @@ return (
         <Routes>
           <Route path= '/list' element={<List/>} />
           <Route path= '/writeform' element={<WriteForm/>} />
-          <Route path= '/editform' element={<EditForm/>}/>
+          <Route path= '/editform/:no' element={<EditForm/>}/>
+          <Route path= '/list2' element={<List2/>} />
         </Routes>
       </BrowserRouter>
     </div>
