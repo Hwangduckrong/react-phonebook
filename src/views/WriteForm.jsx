@@ -69,6 +69,7 @@ const WriteForm = () => {
             console.log(response.data);
             if(response.data===1){
                 //리다이렉트
+                
                 navigate("/list");//주소말고 어디로 보낼지 잘 써놔라
             }else
             alert("등록실패")

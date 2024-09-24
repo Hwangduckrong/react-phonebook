@@ -16,7 +16,7 @@ const List = () => {
             responseType: 'json' // 수신 타입
         }).then(response => {
             console.log(response.data); // 수신 데이터
-            setPersonList(response.data);
+            setPersonList(response.data.apiData);
         }).catch(error => {
             console.log(error);
         });
@@ -46,8 +46,7 @@ const List = () => {
                     getPersonList();
                 }else
                 alert(response.data.message);
-            //리다이렉트(같은 페이지의 리다이렉트는 안된다.)
-            //getPersonList();
+           
             //setPersonList(prevList => prevList.filter(personVo => personVo.personId !== no))//콜백함수+filter;
             //filter에 대해 공부해보기
         }).catch(error => {

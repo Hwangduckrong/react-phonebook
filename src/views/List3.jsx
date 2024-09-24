@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-const List2 = () => {
+import ItemPerson from './ItemPerson';
+const List3 = () => {
 
     // 상태 관리 변수(값이 변하면 화면에 랜더링)
     const [personList, setPersonList] = useState([]);
@@ -16,7 +17,7 @@ const List2 = () => {
             responseType: 'json' // 수신 타입
         }).then(response => {
             console.log(response.data); // 수신 데이터
-            setPersonList(response.apiData);
+            setPersonList(response.data.apiData);
         }).catch(error => {
             console.log(error);
         });
@@ -67,38 +68,18 @@ const List2 = () => {
             <h2>전화번호-리스트</h2>
             <p>등록된 전화번호 리스트입니다</p>
 
-            {/* personList가 있을 경우에만 map을 실행 */}
+            
             {personList.map((personVo) => (
-                <div key={personVo.personId}>
-                    <table border="1">
-                        <tbody>
-                            <tr>
-                                <th>이름(name)</th>
-                                <td>{personVo.name}</td>
-                            </tr>
-                            <tr>
-                                <th>핸드폰(hp)</th>
-                                <td>{personVo.hp}</td>
-                            </tr>
-                            <tr>
-                                <th>회사(company)</th>
-                                <td>{personVo.company}</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <Link to={`/editform/${personVo.personId}`} target="_blank" rel="noreferrer noopener">수정</Link>
-                                </td>
-                                <td><button type='button' onClick={()=>{handleDel(personVo.personId)}}>삭제</button></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <br />
-                </div>
+                
+                  <ItemPerson key={personVo.personId} 
+                              person={personVo}
+                              delPerson={handleDel}/>
+                
             ))}
 
-            <Link to="/writeform" target="_blank" rel="noreferrer noopener">등록폼으로 이동</Link>
-        </>
+          </>
     );
 }
-
-export default List2;
+ 
+         <Link to="/writeform" target="_blank" rel="noreferrer noopener">등록폼으로 이동</Link>
+export default List3;
